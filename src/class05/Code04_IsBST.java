@@ -1,6 +1,7 @@
 package class05;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Code04_IsBST {
 
@@ -63,6 +64,28 @@ public class Code04_IsBST {
 		return checkBST(head.right);
 	}
 
+	//三.不使用递归
+	public static boolean checkBST2(Node head) {
+		if (head != null) {
+			Stack<Node> stack = new Stack<>();
+			while (!stack.isEmpty() || head != null) {
+				if (head != null) {
+					stack.push(head);
+					head = head.left;
+				} else {
+					head = stack.pop();
+					if(head.value <= preValue)
+						return false; 
+					else {
+						preValue = head.value;
+					}
+					head = head.right;
+				}
+			}
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		Node head = new Node(5);
 		head.left = new Node(3);
@@ -76,7 +99,7 @@ public class Code04_IsBST {
 		head.right.right.left = new Node(9);
 		head.right.right.right = new Node(11);
 
-		System.out.println(checkBST(head));
+		System.out.println(checkBST2(head));
 	}
 
 }
