@@ -41,6 +41,42 @@ public class Code04_IsBST {
 	}
 
 
-	
+	//二.不使用额外空间
+	public static int preValue = Integer.MIN_VALUE;
+
+	public static boolean checkBST(Node head) {
+		// 1.树是否为空
+		if (head == null)
+			return true;
+
+		// 2.左子树是否为二叉搜索树
+		if (!checkBST(head.left))
+			return false;
+
+		// 3.当前节点的值是否小于上一个节点
+		if (head.value <= preValue)
+			return false;
+		else
+			preValue = head.value; // 上一节点的值 = 当前节点的值
+
+		// 4.右树是否为二叉搜索树
+		return checkBST(head.right);
+	}
+
+	public static void main(String[] args) {
+		Node head = new Node(5);
+		head.left = new Node(3);
+		head.right = new Node(8);
+		head.left.left = new Node(2);
+		head.left.right = new Node(4);
+		head.left.left.left = new Node(1);
+		head.right.left = new Node(7);
+		head.right.left.left = new Node(6);
+		head.right.right = new Node(10);
+		head.right.right.left = new Node(9);
+		head.right.right.right = new Node(11);
+
+		System.out.println(checkBST(head));
+	}
 
 }
