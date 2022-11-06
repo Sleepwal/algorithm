@@ -17,19 +17,23 @@ public class Code08_SuccessorNode {
 		if (node == null) {
 			return node;
 		}
-		if (node.right != null) {
+		if (node.right != null) {	//1.有右孩子, 返回右树的最左节点
 			return getLeftMost(node.right);
-		} else {
+		} 
+		else { //2.无右孩子, 找到第一个是父亲的左孩子的节点，后继是该父亲
 			Node parent = node.parent;
-			while (parent != null && parent.left != node) {
+
+			//2.1 父亲节点为空时, 就已经走到最右节点了
+			while (parent != null && parent.left != node) { //2.2 当前节点为父亲节点的右孩子
 				node = parent;
 				parent = node.parent;
 			}
+
 			return parent;
 		}
 	}
 
-	public static Node getLeftMost(Node node) {
+	public static Node getLeftMost(Node node) { //求最左节点
 		if (node == null) {
 			return node;
 		}

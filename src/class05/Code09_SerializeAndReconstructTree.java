@@ -15,6 +15,7 @@ public class Code09_SerializeAndReconstructTree {
 		}
 	}
 
+	//以head为头的树, 序列化成字符串
 	public static String serialByPre(Node head) {
 		if (head == null) {
 			return "#!";
@@ -25,6 +26,7 @@ public class Code09_SerializeAndReconstructTree {
 		return res;
 	}
 
+	//反序列化
 	public static Node reconByPreString(String preStr) {
 		String[] values = preStr.split("!");
 		Queue<String> queue = new LinkedList<String>();
@@ -45,6 +47,8 @@ public class Code09_SerializeAndReconstructTree {
 		return head;
 	}
 
+
+	
 	public static String serialByLevel(Node head) {
 		if (head == null) {
 			return "#!";

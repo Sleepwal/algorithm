@@ -16,18 +16,24 @@ public class Code07_LowestCommonAncestor {
 	}
 
 	public static Node lowestAncestor(Node head, Node o1, Node o2) {
-		if (head == null || head == o1 || head == o2) {
+		if (head == null || head == o1 || head == o2) { //base case
 			return head;
 		}
 		Node left = lowestAncestor(head.left, o1, o2);
 		Node right = lowestAncestor(head.right, o1, o2);
+
+		//左右都不空，一定是node1和node2，一个在左，一个在右。
+		//除了node1和node, 其他情况都是返回null
 		if (left != null && right != null) {
 			return head;
 		}
+
+		//左右不全为空, 返回不为空的
+		//左右都为空, 返回right, right是null, 返回null
 		return left != null ? left : right;
 	}
 
-	// ��������--����һ
+	// ????????--?????
 	public static class Record1 {
 		private HashMap<Node, Node> map;
 
@@ -67,7 +73,7 @@ public class Code07_LowestCommonAncestor {
 
 	}
 
-	// ��������--������
+	// ????????--??????
 	public static class Record2 {
 		private HashMap<Node, HashMap<Node, Node>> map;
 

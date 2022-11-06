@@ -16,7 +16,7 @@ public class Code06_IsBalancedTree {
 		return process(head).isBalanced;
 	}
 
-	public static class ReturnType {
+	public static class ReturnType { //需要的信息
 		public boolean isBalanced;
 		public int height;
 
@@ -30,11 +30,19 @@ public class Code06_IsBalancedTree {
 		if (x == null) {
 			return new ReturnType(true, 0);
 		}
+
 		ReturnType leftData = process(x.left);
 		ReturnType rightData = process(x.right);
+
+		//算出自身的高度
 		int height = Math.max(leftData.height, rightData.height);
+
+		//1. 左子树是平衡二叉树
+		//2. 右子树是平衡二叉树
+		//3. | 左子树的高度 - 右子树的高度 | <= 1
 		boolean isBalanced = leftData.isBalanced && rightData.isBalanced
 				&& Math.abs(leftData.height - rightData.height) < 2;
+				
 		return new ReturnType(isBalanced, height);
 	}
 
